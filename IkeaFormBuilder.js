@@ -6,8 +6,8 @@ function IkeaFormBuilder(options) {
   this.options = JSON.parse(JSON.stringify(options));
   this.rootElem = document.getElementById('IkeaFormBuilder');
 
+  // variable for input-keyValuePairs
   this._inputsData = {};
-  this._inputIndex = 0;
 
   if (!this.rootElem)
     throw new Error('IkeaFormBuilder error: rootElem not found');
@@ -50,9 +50,6 @@ function IkeaFormBuilder(options) {
 
     this.rootElem.appendChild(node);
   }.bind(this));
-
-  this.sendData();
-  console.log(this._inputsData);
 }
 
 /**
@@ -135,10 +132,14 @@ IkeaFormBuilder.prototype.createNewElement = function (option) {
   return elem;
 }
 
-// Because of es5
+// Because of ei11
 IkeaFormBuilder.prototype._copyProps = function (obj1, obj2) {
-  for (propName in obj1)
+  for (propName in obj1) {
     obj2[propName] = obj1[propName];
+
+    if (typeof obj2[propName] === 'function')
+      obj2[propName] = obj2[propName].bind(this);
+  }
 }
 
 IkeaFormBuilder.prototype._GetId = function () {
@@ -156,6 +157,11 @@ IkeaFormBuilder.prototype.sendData = function () {
         this._inputsData[input.id] = input.value;
     }.bind(this));
 
+  alert(Object.keys(this._inputsData).map(function(prop) {
+    return this._inputsData[prop];
+  }.bind(this)));
+
+  /* not implemented
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'http://localhost:3000/');
   xhr.setRequestHeader('Content-Type', 'application/json');
@@ -165,5 +171,5 @@ IkeaFormBuilder.prototype.sendData = function () {
   xhr.send(JSON.stringify({
     options: this.options,
     data: this._inputsData
-  }));
+  }));*/
 }

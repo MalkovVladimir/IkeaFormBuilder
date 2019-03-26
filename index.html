@@ -38,7 +38,7 @@
     }
 
     .formBuilderBtn {
-      width: 5rem;
+      width: inherit;
     }
 
     .formBuilderInput {
@@ -60,11 +60,12 @@
   <div id="IkeaFormBuilder"></div>
   <script src="IkeaFormBuilder.js"></script>
   <script>
+
     new IkeaFormBuilder([
       {
         type: 'simpleList',
         label: 'Навыки',
-        values: [ 'frontend', 'backend', 'DB and ORM' ]
+        values: ['frontend', 'backend', 'DB and ORM']
       },
       {
         type: 'label',
@@ -101,10 +102,10 @@
       },
       {
         type: 'button',
-        properties: { innerText: 'OK', onclick: function() { alert(event.target.innerText) } },
+        properties: { innerText: 'Отправить', onclick: function() { this.sendData() } },
         classList: ['formBuilderElement', 'formBuilderBtn']
       }
-    ]); 
+    ]);
   </script>
 </body>
 
