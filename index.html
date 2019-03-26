@@ -38,7 +38,7 @@
     }
 
     .formBuilderBtn {
-      width: inherit;
+      width: 15%;
     }
 
     .formBuilderInput {
@@ -88,7 +88,7 @@
       {
         type: 'radioGroup',
         label: 'Выберите один ответ:',
-        values: ['Принять в штаб', 'Принять в штаб быстро']
+        values: ['Принять в команду', 'Nice try but...']
       },
       {
         type: 'checkboxGroup',
@@ -96,8 +96,11 @@
         values: ['Лето', 'Зима', 'Осень', 'Весна']
       },
       {
+        type: 'label',
+        properties: { innerText: 'Выберите дату:'}
+      },
+      {
         type: 'input',
-        label: 'Сейчас: ',
         properties: { type: 'date' }
       },
       {
